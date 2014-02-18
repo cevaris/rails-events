@@ -15,12 +15,13 @@ namespace :events do
     redis = Redis.new(Rq::Application.config.redis)
 
     puts "==> #{channel} <=="
+    puts "Keys #{redis.keys('*')}"
 
-    loop do
-      list, message = redis.blpop(channel)
-      json = JSON.parse(message)
-      puts json
-    end
+    # loop do
+    #   list, message = redis.blpop(channel)
+    #   json = JSON.parse(message)
+    #   puts json
+    # end
 
   end
 

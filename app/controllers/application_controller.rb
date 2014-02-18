@@ -4,16 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  after_filter :flush_events_to_log
-
   private
 
   def event_handler
-    @event_handler ||= EventHandler.new(RedisEvents.instance)
+    @event_handler ||= EventHandler.new
   end
 
-  def flush_events_to_log
-    event_handler.flush
-  end
   
 end
